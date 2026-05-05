@@ -12,7 +12,7 @@ window.TRAQIO_CONFIG = {
   SUPABASE_ANON_KEY: "sb_publishable_w3E8-kjDmnyD6sxs3r-cXg_gRVanPne",
 
   // Must match Supabase Auth → URL Configuration → Redirect URLs
-  AUTH_REDIRECT: "https://traqio.github.io/Traqio/pages/dashboard.html",
+  AUTH_REDIRECT: "https://farouqakbar.github.io/traqio/pages/dashboard.html",
 
   // false = use real Supabase; true = use localStorage mock data
   DEMO_MODE: false,
