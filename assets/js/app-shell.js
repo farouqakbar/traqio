@@ -346,19 +346,18 @@
   function injectBottomNav(active) {
     const links = [
       {
-        key: "dashboard",
-        href: "dashboard.html",
-        icon: "home",
-        label: "Home",
-      },
-      {
         key: "applications",
         href: "applications.html",
         icon: "briefcase",
         label: "Apps",
       },
+      {
+        key: "dashboard",
+        href: "dashboard.html",
+        icon: "home",
+        label: "Home",
+      },
       { key: "skills", href: "skills.html", icon: "target", label: "Skills" },
-      { key: "profile", href: "profile.html", icon: "user", label: "Profile" },
     ];
 
     // If already injected, re-render icons (they may have been empty on first call)

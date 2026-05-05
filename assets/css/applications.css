@@ -1162,7 +1162,7 @@
   display: none; /* mobile only — shown via media query */
   position: relative;
   margin-bottom: 12px;
-  z-index: 50;
+  z-index: 15; /* below topbar (z-index:20) so dropdown slides under sticky header */
 }
 .stage-toggle-btn {
   width: 100%;
@@ -1375,7 +1375,7 @@
    MOBILE ≤ 767px  — primary breakpoint
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
-  /* Page header — compact single row */
+  /* Page header — Find Jobs top-left, title next to it */
   .page-header {
     margin-bottom: 10px;
     align-items: center;
@@ -1389,13 +1389,19 @@
     font-size: 0.72rem;
   }
 
-  /* Hide both desktop action buttons — FAB handles Add */
+  /* Move Find Jobs to top-left of header (before titles) */
+  .page-header-actions {
+    order: -1;
+    flex-shrink: 0;
+  }
   .page-header-actions .btn-primary {
     display: none;
   }
-  /* Hide Find Jobs from header on mobile — accessible as secondary action in toolbar */
+  /* Show Find Jobs in page header on mobile */
   .btn-find-jobs {
-    display: none;
+    display: inline-flex;
+    font-size: 0.72rem;
+    padding: 5px 10px;
   }
 
   /* Show FAB */
@@ -1447,13 +1453,9 @@
     height: 36px;
     font-size: 0.82rem;
   }
-  /* Show Find Jobs as a small secondary link at left of toolbar-right on mobile */
+  /* Hide Find Jobs from toolbar — it lives in page header on mobile */
   .toolbar-right .btn-find-jobs {
-    display: inline-flex;
-    font-size: 0.72rem;
-    padding: 5px 10px;
-    flex-shrink: 0;
-    order: -1;
+    display: none;
   }
 
   /* Hide view switch & edit layout on mobile */

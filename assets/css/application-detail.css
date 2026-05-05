@@ -687,6 +687,11 @@
   .note-compose > div .btn { width: 100%; }
 }
 
+@media (max-width: 640px) {
+  .page {
+    padding-bottom: calc(80px + max(8px, env(safe-area-inset-bottom)));
+  }
+}
 @media (max-width: 480px) {
   .app-header .info h1 { font-size: 1.1rem; }
   .stage-dot { width: 34px; height: 34px; }

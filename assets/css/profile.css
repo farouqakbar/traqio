@@ -639,4 +639,7 @@ input:checked ~ .tgl-thumb { left: 23px; }
   .hero-stat .num { font-size: 1.25rem; }
   .danger-row { gap: 12px; }
   .danger-row .btn { flex-shrink: 0; }
+  .page {
+    padding-bottom: calc(80px + max(8px, env(safe-area-inset-bottom)));
+  }
 }

@@ -128,3 +128,8 @@
   .dot { min-width: 36px; min-height: 36px; cursor: pointer; }
   .del-skill { opacity: 1 !important; min-width: 36px; min-height: 36px; }
 }
+@media (max-width: 767px) {
+  .page {
+    padding-bottom: calc(80px + max(8px, env(safe-area-inset-bottom)));
+  }
+}

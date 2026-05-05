@@ -690,6 +690,7 @@
   }
   .page {
     padding: 14px 16px;
+    padding-bottom: calc(80px + max(8px, env(safe-area-inset-bottom)));
   }
   .topbar .search {
     display: none;

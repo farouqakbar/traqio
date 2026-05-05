@@ -742,6 +742,18 @@
   margin-top: 2px;
 }
 
+@media (max-width: 767px) {
+  .page {
+    padding-bottom: calc(80px + max(8px, env(safe-area-inset-bottom)));
+  }
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .admin-lists-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---- MATCH CRITERIA SECTION DIVIDER ---- */
 .admin-section-divider {
   display: flex;

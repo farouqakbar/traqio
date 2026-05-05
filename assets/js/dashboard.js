@@ -656,10 +656,11 @@
 
   function widget(key, html) {
     if (!html || !html.trim()) return "";
-    return `<div class="dash-widget dash-widget--cols-12" data-widget="${key}" draggable="true">
-      <div class="dash-widget-controls mobile-hidden">
+    const draggable = key !== "stats";
+    return `<div class="dash-widget dash-widget--cols-12" data-widget="${key}"${draggable ? ' draggable="true"' : ""}>
+      ${draggable ? `<div class="dash-widget-controls mobile-hidden">
         <div class="dash-widget-handle" title="Drag to reorder" aria-hidden="true"></div>
-      </div>
+      </div>` : ""}
       ${html}
     </div>`;
   }
@@ -738,7 +739,7 @@
       });
     }
 
-    container.querySelectorAll(".dash-widget[draggable]").forEach((w) => {
+    container.querySelectorAll(".dash-widget[draggable='true']").forEach((w) => {
       w.setAttribute("draggable", "true");
       w.addEventListener("dragstart", (e) => {
         dragEl = w;

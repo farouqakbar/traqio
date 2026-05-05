@@ -254,10 +254,9 @@
 
     /* Tab icons */
     const tabDefs = [
-      { id: "tab-personal", icon: "user", label: "Personal" },
       { id: "tab-career", icon: "target", label: "Career" },
-      { id: "tab-notifications", icon: "bell", label: "Alerts" },
-      { id: "tab-danger", icon: "warning", label: "Account" },
+      { id: "tab-personal", icon: "user", label: "Personal" },
+      { id: "tab-account", icon: "settings", label: "Account" },
     ];
 
     const tabButtons = tabDefs
@@ -322,8 +321,47 @@
 
             <div class="settings-panel">
 
-              <!-- ① Personal Info -->
-              <div class="tab-pane active" id="tab-personal">
+              <!-- ① Career Targets -->
+              <div class="tab-pane active" id="tab-career">
+                <div class="settings-section">
+                  <h3>${I("target")} Career Targets</h3>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label class="label">Target Role</label>
+                      <input class="input" id="s-role" value="${p.targetRole}" />
+                    </div>
+                    <div class="field">
+                      <label class="label">Expected Salary</label>
+                      <input class="input" id="s-salary" value="${p.targetSalary}" inputmode="numeric" />
+                    </div>
+                    <div class="field">
+                      <label class="label">Preferred Location</label>
+                      <input class="input" id="s-tloc" value="${p.targetLocation}" />
+                    </div>
+                    <div class="field" style="display:flex;align-items:center;gap:12px;padding-top:6px">
+                      <input type="checkbox" id="s-otw" ${p.openToWork ? "checked" : ""} style="width:20px;height:20px;accent-color:var(--brand-500);flex-shrink:0" />
+                      <label for="s-otw" style="font-weight:600;cursor:pointer;font-size:.92rem">Open to Work</label>
+                    </div>
+                  </div>
+
+                  <div class="field" style="margin-top:14px">
+                    <label class="label">Preferred Industries <span style="font-weight:400;color:var(--text-muted);font-size:.75rem">— match score (10%)</span></label>
+                    ${buildMultiSelect("s-industries", INDUSTRIES, p.preferredIndustries || [], "Search industries…")}
+                  </div>
+
+                  <div class="field" style="margin-top:12px">
+                    <label class="label">Job Preferences <span style="font-weight:400;color:var(--text-muted);font-size:.75rem">— match score (30%)</span></label>
+                    ${buildMultiSelect("s-prefs", JOB_PREFERENCES, p.jobPreferences || [], "Search preferences…")}
+                  </div>
+
+                  <div class="save-sticky" style="margin-top:16px">
+                    <button class="btn btn-primary" id="saveTargets">${I("check")} Save Targets</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ② Personal Info -->
+              <div class="tab-pane" id="tab-personal">
                 <div class="settings-section">
                   <h3>${I("user")} Personal Information</h3>
                   <div class="form-grid">
@@ -372,47 +410,8 @@
                 </div>
               </div>
 
-              <!-- ② Career Targets -->
-              <div class="tab-pane" id="tab-career">
-                <div class="settings-section">
-                  <h3>${I("target")} Career Targets</h3>
-                  <div class="form-grid">
-                    <div class="field">
-                      <label class="label">Target Role</label>
-                      <input class="input" id="s-role" value="${p.targetRole}" />
-                    </div>
-                    <div class="field">
-                      <label class="label">Expected Salary</label>
-                      <input class="input" id="s-salary" value="${p.targetSalary}" inputmode="numeric" />
-                    </div>
-                    <div class="field">
-                      <label class="label">Preferred Location</label>
-                      <input class="input" id="s-tloc" value="${p.targetLocation}" />
-                    </div>
-                    <div class="field" style="display:flex;align-items:center;gap:12px;padding-top:6px">
-                      <input type="checkbox" id="s-otw" ${p.openToWork ? "checked" : ""} style="width:20px;height:20px;accent-color:var(--brand-500);flex-shrink:0" />
-                      <label for="s-otw" style="font-weight:600;cursor:pointer;font-size:.92rem">Open to Work</label>
-                    </div>
-                  </div>
-
-                  <div class="field" style="margin-top:14px">
-                    <label class="label">Preferred Industries <span style="font-weight:400;color:var(--text-muted);font-size:.75rem">— match score (10%)</span></label>
-                    ${buildMultiSelect("s-industries", INDUSTRIES, p.preferredIndustries || [], "Search industries…")}
-                  </div>
-
-                  <div class="field" style="margin-top:12px">
-                    <label class="label">Job Preferences <span style="font-weight:400;color:var(--text-muted);font-size:.75rem">— match score (30%)</span></label>
-                    ${buildMultiSelect("s-prefs", JOB_PREFERENCES, p.jobPreferences || [], "Search preferences…")}
-                  </div>
-
-                  <div class="save-sticky" style="margin-top:16px">
-                    <button class="btn btn-primary" id="saveTargets">${I("check")} Save Targets</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ③ Notifications -->
-              <div class="tab-pane" id="tab-notifications">
+              <!-- ③ Account (Alerts + Danger Zone) -->
+              <div class="tab-pane" id="tab-account">
                 <div class="settings-section">
                   <h3>${I("bell")} Notifications</h3>
                   <div style="display:flex;flex-direction:column;gap:16px">
@@ -423,10 +422,6 @@
                     <button class="btn btn-secondary" id="saveNotif">${I("check")} Save Preferences</button>
                   </div>
                 </div>
-              </div>
-
-              <!-- ④ Danger Zone -->
-              <div class="tab-pane" id="tab-danger">
                 <div class="settings-section danger-zone">
                   <h3>Danger Zone</h3>
                   <div class="danger-row">
