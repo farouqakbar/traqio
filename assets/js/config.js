@@ -22,6 +22,8 @@ window.TRAQIO_CONFIG = {
 (function () {
   const c = window.TRAQIO_CONFIG;
   if (!c.DEMO_MODE && (!c.SUPABASE_URL || !c.SUPABASE_ANON_KEY)) {
-    console.warn("[Traqio] SUPABASE_URL or SUPABASE_ANON_KEY is missing. Set DEMO_MODE: true or fill in your credentials.");
+    console.warn(
+      "[Traqio] SUPABASE_URL or SUPABASE_ANON_KEY is missing. Set DEMO_MODE: true or fill in your credentials.",
+    );
   }
 })();
