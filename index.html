@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traqio — Track Your Growth, Own Your Future</title>
+    <meta
+      name="description"
+      content="Traqio is the modern career-tracking platform for jobseekers. Track applications, manage skills, and prepare for every interview with a personal job journal."
+    />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self';" />
+    <meta property="og:title" content="Traqio — Track Your Growth, Own Your Future" />
+    <meta property="og:description" content="The modern career-tracking platform for jobseekers. Track applications, build skills, and own your career journey." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://traqio.github.io/Traqio/assets/logo/illust.png" />
+    <meta property="og:url" content="https://traqio.github.io/Traqio/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Traqio — Track Your Growth, Own Your Future" />
+    <meta name="twitter:description" content="The modern career-tracking platform for jobseekers." />
+    <meta name="twitter:image" content="https://traqio.github.io/Traqio/assets/logo/illust.png" />
+    <link rel="icon" href="assets/logo/logo.png" type="image/png" />
+
+    <!-- Apply theme before paint to avoid flash -->
+    <script>
+      try {
+        var t = localStorage.getItem("traqio:theme") || "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/landing.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- ========== NAV ========== -->
+    <nav class="landing-nav">
+      <div class="row">
+        <a href="index.html" class="brand">
+          <img src="assets/logo/logokanan.png" alt="Traq Logo" class="brand-logo brand-logo-light" />
+          <img src="assets/logo/logodarkmode.png" alt="Traq Logo" class="brand-logo brand-logo-dark" />
+        </a>
+        <div class="links">
+          <a href="#features">Tools</a>
+          <a href="#templates">Features</a>
+        </div>
+        <div class="actions">
+          <button class="theme-toggle" data-theme-toggle title="Toggle theme">
+            <span class="icon-sun" data-icon="sun"></span>
+            <span class="icon-moon" data-icon="moon"></span>
+          </button>
+          <a href="pages/login.html" class="login">Log in</a>
+          <a href="pages/login.html" class="btn btn-primary"
+            >Get Started Free</a
+          >
+          <button
+            class="nav-hamburger"
+            id="navHamburger"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <div class="nav-mobile-menu" id="navMobileMenu">
+        <a href="#features">Tools</a>
+        <a href="#templates">Features</a>
+        <div class="nav-mobile-divider"></div>
+        <a href="pages/login.html" class="nav-mobile-login">Log in</a>
+        <a href="pages/login.html" class="btn btn-primary nav-mobile-cta"
+          >Get Started Free</a
+        >
+      </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <span class="pill">
+            <span
+              data-icon="sparkles"
+              style="width: 14px; height: 14px; display: inline-flex"
+            ></span>
+            Your Career, Clearly Tracked
+          </span>
+          <h1>
+            Track Your Career.<br />
+            Build Your <span class="accent">Future.</span>
+          </h1>
+          <p class="lead">
+            Traqio helps you track every job application, manage your skills,
+            and turn every interview into a learning loop — all in one
+            beautifully organised workspace built for jobseekers.
+          </p>
+          <div class="hero-cta">
+            <a href="pages/login.html" class="btn btn-primary btn-lg">
+              Start Tracking Free ⮕
+            </a>
+            <a href="#preview" class="btn btn-secondary btn-lg">
+              See Traqio in Action ▶
+            </a>
+          </div>
+          <div class="social-proof">
+            <div class="avatars">
+              <div
+                class="avatar"
+                style="background: linear-gradient(135deg, #fb7185, #f43f5e)"
+              >
+                A
+              </div>
+              <div
+                class="avatar"
+                style="background: linear-gradient(135deg, #facc15, #f97316)"
+              >
+                M
+              </div>
+              <div
+                class="avatar"
+                style="background: linear-gradient(135deg, #34d399, #059669)"
+              >
+                L
+              </div>
+              <div class="more">+2k</div>
+            </div>
+            <div>
+              <div class="stars">★★★★★</div>
+              <div class="proof-text">Trusted by 2,000+ professionals</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO PREVIEW (dashboard mockup) -->
+        <div class="hero-preview" id="heroDashboardPreview">
+          <div class="preview-side">
+            <div class="demo">
+              <img src="assets/logo/logokanan.png" alt="Traqio Logo" class="brand-logo brand-logo-light" />
+              <img src="assets/logo/logodarkmode.png" alt="Traqio Logo" class="brand-logo brand-logo-dark" />
+            </div>
+            <div class="item active">
+              <span data-icon="dashboard"></span>Dashboard
+            </div>
+            <div class="item"><span data-icon="target"></span>Goals</div>
+            <div class="item"><span data-icon="sparkles"></span>Skills</div>
+            <div class="item"><span data-icon="chart"></span>Activities</div>
+            <div class="item"><span data-icon="journal"></span>Journal</div>
+            <div class="item"><span data-icon="folder"></span>Documents</div>
+            <div class="item"><span data-icon="chart"></span>Analytics</div>
+            <div class="item"><span data-icon="settings"></span>Settings</div>
+            <div
+              style="
+                margin-top: auto;
+                padding-top: 18px;
+                border-top: 1px solid var(--border);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+            >
+              <div class="akun">
+                <img src="assets\logo\logo.png" alt="Logo" />
+              </div>
+              <div style="font-size: 0.7rem; line-height: 1.2">
+                <div style="font-weight: 600">Traqios</div>
+                <div style="color: var(--text-muted)">traqios@traqio.com</div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-main">
+            <div class="preview-head">
+              <div>
+                <h3>Dashboard</h3>
+                <div class="sub">Welcome back, Traqios 👋</div>
+              </div>
+              <div class="date">May 1 – May 7</div>
+            </div>
+
+            <div class="preview-cards">
+              <div class="p-card">
+                <div class="overall">Overall Progress</div>
+                <div class="donut">
+                  <svg viewBox="0 0 36 36">
+                    <circle
+                      cx="18"
+                      cy="18"
+                      r="15"
+                      fill="none"
+                      stroke="var(--bg-app)"
+                      stroke-width="3.5"
+                    />
+                    <circle
+                      cx="18"
+                      cy="18"
+                      r="15"
+                      fill="none"
+                      stroke="url(#g1)"
+                      stroke-width="3.5"
+                      stroke-dasharray="72,100"
+                      stroke-linecap="round"
+                      transform="rotate(-90 18 18)"
+                    />
+                    <defs>
+                      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#3b82f6" />
+                        <stop offset="100%" stop-color="#6366f1" />
+                      </linearGradient>
+                    </defs>
+                    <text
+                      x="18"
+                      y="20"
+                      text-anchor="middle"
+                      font-size="7"
+                      font-weight="700"
+                      fill="currentColor"
+                    >
+                      72%
+                    </text>
+                  </svg>
+                  <div class="stats">
+                    <div class="row"><span>Skills</span> <b>16/25</b></div>
+                    <div class="row"><span>Goals</span> <b>3/5</b></div>
+                    <div class="row"><span>Milestones</span> <b>7/10</b></div>
+                  </div>
+                </div>
+              </div>
+              <div class="p-card level">
+                <div class="top">
+                  <div class="label">Career Level</div>
+                  <span class="lv">Level 4</span>
+                </div>
+                <h4>Growth Explorer</h4>
+                <div class="xp">460 / 800 XP</div>
+                <div class="progress" style="margin-top: 8px; height: 6px">
+                  <span style="width: 58%"></span>
+                </div>
+                <div class="mountains"></div>
+              </div>
+            </div>
+
+            <div class="preview-cards">
+              <div class="activity-block">
+                <div class="head">
+                  <h6>Recent Activities</h6>
+                  <a style="font-size: 0.6rem; color: var(--brand-500)"
+                    >View all →</a
+                  >
+                </div>
+                <div class="activity-list">
+                  <div class="act-row">
+                    <div class="icon info">
+                      <span data-icon="briefcase"></span>
+                    </div>
+                    <div class="info-text">
+                      Added new skill
+                      <div class="label">Data Analysis</div>
+                    </div>
+                    <div class="time">2h ago</div>
+                  </div>
+                  <div class="act-row">
+                    <div class="icon success">
+                      <span data-icon="check"></span>
+                    </div>
+                    <div class="info-text">
+                      Completed goal
+                      <div class="label">SQL Basics</div>
+                    </div>
+                    <div class="time">1d ago</div>
+                  </div>
+                  <div class="act-row">
+                    <div class="icon purple">
+                      <span data-icon="journal"></span>
+                    </div>
+                    <div class="info-text">
+                      Weekly journal
+                      <div class="label">Week 17 reflection</div>
+                    </div>
+                    <div class="time">2d ago</div>
+                  </div>
+                </div>
+              </div>
+              <div class="journey">
+                <h4>Career Journey</h4>
+                <div class="journey-list">
+                  <div class="j-step">
+                    <div class="meta">
+                      <div class="role">Junior Data Analyst</div>
+                      <div class="date">Jan 2024 – Dec 2024</div>
+                    </div>
+                  </div>
+                  <div class="j-step">
+                    <div class="meta">
+                      <div class="role">Data Analyst</div>
+                      <div class="date">Jan 2025 – Present</div>
+                    </div>
+                  </div>
+                  <div class="j-step future">
+                    <div class="meta">
+                      <div class="role">Senior Data Analyst</div>
+                      <div class="date">Next Goal</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section class="block" id="features">
+      <div class="block-inner">
+        <div class="section-eyebrow">Everything You Need</div>
+        <h2 class="section-title">
+          Built for every stage of your career journey
+        </h2>
+
+        <div class="features-grid">
+          <div class="feature-card c-info">
+            <div class="icon-wrap" data-icon="chart"></div>
+            <h3>Career Progress Tracking</h3>
+            <p>
+              Visualise your growth across roles, skills and milestones with
+              elegant charts and a clear story arc.
+            </p>
+          </div>
+          <div class="feature-card c-success">
+            <div class="icon-wrap" data-icon="target"></div>
+            <h3>Goal &amp; Milestone</h3>
+            <p>
+              Break ambitious goals into achievable milestones with deadlines,
+              progress and gentle reminders.
+            </p>
+          </div>
+          <div class="feature-card c-purple">
+            <div class="icon-wrap" data-icon="sparkles"></div>
+            <h3>Skill Management</h3>
+            <p>
+              Map your current skill levels, identify gaps for your dream role
+              and track every learning hour.
+            </p>
+          </div>
+          <div class="feature-card c-warning">
+            <div class="icon-wrap" data-icon="journal"></div>
+            <h3>Application Journal</h3>
+            <p>
+              Take notes per stage of every interview — prep questions,
+              post-mortems and lessons learned.
+            </p>
+          </div>
+          <div class="feature-card c-danger">
+            <div class="icon-wrap" data-icon="chart"></div>
+            <h3>Analytics &amp; Insights</h3>
+            <p>
+              Pattern-spot in your job search: which sources convert, which
+              roles you nail, where to invest next.
+            </p>
+          </div>
+          <div class="feature-card c-brand">
+            <div class="icon-wrap" data-icon="folder"></div>
+            <h3>Portfolio Tracker</h3>
+            <p>
+              Store CV versions, cover letters and portfolio links so the right
+              asset is always one click away.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TEMPLATES ========== -->
+    <section class="block" id="templates" style="padding-top: 0">
+      <div class="block-inner">
+        <div class="templates-row">
+          <div>
+            <h2>Track your career journey</h2>
+          </div>
+        </div>
+        <div class="templates-grid">
+          <div class="template-card">
+            <div class="preview">
+              <div class="roadmap">
+                <div class="dots">
+                  <div class="dot active"></div>
+                  <div class="dot active"></div>
+                  <div class="dot active"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                </div>
+              </div>
+            </div>
+            <h3>Career Roadmap</h3>
+            <p>Plan every step from your first role to your next promotion.</p>
+          </div>
+          <div class="template-card">
+            <div class="preview">
+              <div class="chart-rows">
+                <div class="row-line">
+                  <span class="lbl">SQL</span>
+                  <div class="bar"><span style="width: 90%"></span></div>
+                  <span class="val">Adv</span>
+                </div>
+                <div class="row-line">
+                  <span class="lbl">Py</span>
+                  <div class="bar"><span style="width: 60%"></span></div>
+                  <span class="val">Int</span>
+                </div>
+                <div class="row-line">
+                  <span class="lbl">Excel</span>
+                  <div class="bar"><span style="width: 95%"></span></div>
+                  <span class="val">Adv</span>
+                </div>
+                <div class="row-line">
+                  <span class="lbl">Stats</span>
+                  <div class="bar"><span style="width: 50%"></span></div>
+                  <span class="val">Int</span>
+                </div>
+              </div>
+            </div>
+            <h3>Skill Tracker</h3>
+            <p>
+              Score and improve the skills that matter for your target role.
+            </p>
+          </div>
+          <div class="template-card">
+            <div class="preview">
+              <div class="checklist" style="padding-top: 8px">
+                <div class="ck done">
+                  <div class="box"></div>
+                  What I did well
+                </div>
+                <div class="ck done">
+                  <div class="box"></div>
+                  What can be improved
+                </div>
+                <div class="ck">
+                  <div class="box"></div>
+                  Next week focus
+                </div>
+                <div class="ck">
+                  <div class="box"></div>
+                  One bold experiment
+                </div>
+              </div>
+            </div>
+            <h3>Weekly Review</h3>
+            <p>A 5-minute reflection ritual that compounds over months.</p>
+          </div>
+          <div class="template-card">
+            <div class="preview">
+              <div class="status-rows" style="padding-top: 6px">
+                <div class="sr">
+                  <span class="name">Google</span
+                  ><span class="badge review">In Review</span>
+                </div>
+                <div class="sr">
+                  <span class="name">Microsoft</span
+                  ><span class="badge applied">Applied</span>
+                </div>
+                <div class="sr">
+                  <span class="name">Stripe</span
+                  ><span class="badge interview">Interview</span>
+                </div>
+                <div class="sr">
+                  <span class="name">Tokopedia</span
+                  ><span class="badge saved">Saved</span>
+                </div>
+              </div>
+            </div>
+            <h3>Job Application Tracker</h3>
+            <p>
+              The pipeline view every jobseeker wishes they had from day one.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="block" style="padding-top: 20px">
+      <div class="block-inner">
+        <div class="cta-block">
+          <div class="visual">
+            <img
+              src="assets/logo/illust.png"
+              alt="Career growth illustration"
+              class="cta-illustration"
+            />
+          </div>
+          <div>
+            <h2>Ready to take control of your career?</h2>
+            <p>
+              Join thousands of professionals who use Traqio to grow their
+              careers — one tracked step at a time.
+            </p>
+            <a href="pages/login.html" class="btn btn-primary btn-lg">
+              Get Started Free
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <div class="brand">
+            <div class="demo">
+              <img src="assets/logo/logokanan.png" alt="Traqio Logo" class="brand-logo brand-logo-light" />
+              <img src="assets/logo/logodarkmode.png" alt="Traqio Logo" class="brand-logo brand-logo-dark" />
+            </div>
+          </div>
+          <p class="copy">
+            Traqio is the modern career-tracking platform that helps you track
+            applications, manage skills, and grow with intention.
+          </p>
+        </div>
+        <div class="col">
+          <h4>Product</h4>
+          <a href="#features">Tools</a>
+          <a href="#templates">Features</a>
+        </div>
+        <div class="col">
+          <h4>Resources</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Guides</a>
+        </div>
+        <div class="col">
+          <h4>Company</h4>
+          <a href="pages/login.html">About</a>
+          <a href="pages/login.html#pp" id="footerPP">Privacy Policy</a>
+        </div>
+        <div class="col">
+          <h4>Connect</h4>
+          <div class="socials" style="margin-top: 4px">
+            <a href="#" aria-label="Twitter"
+              ><svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M22 5.8a8.5 8.5 0 0 1-2.36.65 4.13 4.13 0 0 0 1.81-2.27 8.27 8.27 0 0 1-2.6 1A4.1 4.1 0 0 0 11.5 9a11.65 11.65 0 0 1-8.45-4.29 4.1 4.1 0 0 0 1.27 5.5 4.07 4.07 0 0 1-1.86-.5v.05a4.1 4.1 0 0 0 3.3 4 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 2 18.4a11.6 11.6 0 0 0 6.29 1.85c7.55 0 11.68-6.25 11.68-11.67v-.53A8.34 8.34 0 0 0 22 5.8z"
+                /></svg
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.34 17.34V10.5H6.17v6.84zM7.25 9.5a1.26 1.26 0 1 0 0-2.53 1.26 1.26 0 0 0 0 2.53zm10.09 7.84v-3.74c0-2.01-1.07-2.95-2.5-2.95a2.16 2.16 0 0 0-1.96 1.08v-.93h-2.17v6.54h2.17v-3.62c0-.96.18-1.9 1.37-1.9s1.2 1.1 1.2 1.97v3.55z"
+                /></svg
+            ></a>
+            <a href="#" aria-label="GitHub"
+              ><svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.23.66-.5v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.34-1.09.62-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.3.67.91.67 1.85V21c0 .27.16.59.67.5A10 10 0 0 0 12 2z"
+                /></svg
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" /></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Traqio. All rights reserved.</div>
+        <div>Track Your Growth, Own Your Future.</div>
+      </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div class="video-modal" id="videoModal">
+      <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+      <div class="video-modal-container">
+        <button
+          class="video-modal-close"
+          id="videoModalClose"
+          aria-label="Close"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <video
+          id="heroVideo"
+          class="video-modal-player"
+          controls
+          preload="none"
+          poster="assets/images/illust.png"
+        >
+          <source src="assets/video/login.webm" type="video/webm" />
+          Browser kamu tidak mendukung video.
+        </video>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/icons.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/landing.js"></script>
+  </body>
+</html>

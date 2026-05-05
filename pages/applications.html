@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self';"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="../assets/logo/logo.png" type="image/png" />
+    <title>Applications — Traqio</title>
+    <script>
+      try {
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("traqio:theme") || "light",
+        );
+      } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/app-shell.css" />
+    <link rel="stylesheet" href="../assets/css/applications.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app" id="app"></div>
+
+    <!-- Add application modal -->
+    <div class="modal-backdrop" id="addModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Add a new application</h3>
+          <button
+            class="btn-icon btn-ghost"
+            id="closeAdd"
+            data-icon="x"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="field">
+            <label class="label">Company</label>
+            <div style="display: flex; align-items: center; gap: 8px">
+              <input
+                class="input"
+                id="f-company"
+                placeholder="e.g. Stripe"
+                style="flex: 1"
+              />
+              <div
+                id="f-company-logo-preview"
+                style="
+                  display: none;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 8px;
+                  background: var(--bg-surface-2);
+                  overflow: hidden;
+                  flex-shrink: 0;
+                "
+              >
+                <img
+                  id="f-company-logo-img"
+                  src=""
+                  alt=""
+                  style="width: 100%; height: 100%; object-fit: contain"
+                />
+              </div>
+            </div>
+            <input type="hidden" id="f-logo-url" value="" />
+          </div>
+          <div class="field">
+            <label class="label">Position</label>
+            <input
+              class="input"
+              id="f-position"
+              placeholder="e.g. Junior Data Analyst"
+            />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <div class="field">
+              <label class="label">Location</label>
+              <input
+                class="input"
+                id="f-location"
+                placeholder="Jakarta / Remote"
+              />
+            </div>
+            <div class="field">
+              <label class="label">Salary range</label>
+              <input class="input" id="f-salary" placeholder="Rp 12-15jt" />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <div class="field">
+              <label class="label">Status</label>
+              <select class="select" id="f-status">
+                <option value="saved">Saved</option>
+                <option value="applied" selected>Applied</option>
+                <option value="interview">Interview</option>
+                <option value="offer">Offer</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="label">Source</label>
+              <input
+                class="input"
+                id="f-source"
+                placeholder="LinkedIn / Referral"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Job link (optional)</label>
+            <input class="input" id="f-link" placeholder="https://…" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelAdd">Cancel</button>
+          <button class="btn btn-primary" id="saveAdd">Save Application</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/icons.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/state.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/auth-guard.js"></script>
+    <script src="../assets/js/mock-data.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/app-shell.js"></script>
+    <script src="../assets/js/applications.js"></script>
+  </body>
+</html>

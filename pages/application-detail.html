@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self';" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="../assets/logo/logo.png" type="image/png" />
+    <title>Application Detail — Traqio</title>
+    <script>
+      try { document.documentElement.setAttribute("data-theme", localStorage.getItem("traqio:theme") || "light"); } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/app-shell.css" />
+    <link rel="stylesheet" href="../assets/css/application-detail.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app" id="app"></div>
+
+    <!-- Stage modal -->
+    <div class="modal-backdrop" id="stageModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 id="stageModalTitle">Add Stage</h3>
+          <button class="btn-icon btn-ghost" id="closeStageModal" data-icon="x"></button>
+        </div>
+        <div class="modal-body">
+          <div class="field">
+            <label class="label">Stage Name</label>
+            <input class="input" id="sm-name" placeholder="e.g. Technical Interview, Case Study" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field">
+              <label class="label">Date</label>
+              <input class="input" type="date" id="sm-date" />
+            </div>
+            <div class="field">
+              <label class="label">State</label>
+              <select class="select" id="sm-state">
+                <option value="done">Done</option>
+                <option value="current">Current / Upcoming</option>
+                <option value="upcoming">Planned</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Notes / prep for this stage</label>
+            <textarea class="textarea" id="sm-note" placeholder="What happened? What to prepare? Possible questions…"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelStageModal">Cancel</button>
+          <button class="btn btn-primary" id="saveStageModal">Save Stage</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit application modal -->
+    <div class="modal-backdrop" id="editModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Edit Application</h3>
+          <button class="btn-icon btn-ghost" id="closeEditModal" data-icon="x"></button>
+        </div>
+        <div class="modal-body">
+          <div class="field"><label class="label">Company</label><input class="input" id="em-company" /></div>
+          <div class="field"><label class="label">Position</label><input class="input" id="em-position" /></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field"><label class="label">Location</label><input class="input" id="em-location" /></div>
+            <div class="field"><label class="label">Salary</label><input class="input" id="em-salary" /></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field">
+              <label class="label">Status</label>
+              <select class="select" id="em-status">
+                <option value="saved">Saved</option>
+                <option value="applied">Applied</option>
+                <option value="interview">Interview</option>
+                <option value="offer">Offer</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div class="field"><label class="label">Source</label><input class="input" id="em-source" /></div>
+          </div>
+          <div class="field"><label class="label">Job link</label><input class="input" id="em-link" /></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelEditModal">Cancel</button>
+          <button class="btn btn-primary" id="saveEditModal">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/icons.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/state.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/auth-guard.js"></script>
+    <script src="../assets/js/mock-data.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/app-shell.js"></script>
+    <script src="../assets/js/application-detail.js"></script>
+  </body>
+</html>

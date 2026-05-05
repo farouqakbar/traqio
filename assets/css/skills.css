@@ -1,0 +1,130 @@
+/* TRAQIO — Skills & Goals page */
+
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 22px;
+  align-items: start;
+}
+
+/* ---- SKILL CARD ---- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.skill-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  transition: transform var(--t), box-shadow var(--t);
+  position: relative;
+}
+.skill-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.skill-card .top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
+.skill-card .top .name { font-weight: 700; font-size: 1rem; }
+.skill-card .top .cat { font-size: .72rem; color: var(--text-muted); margin-top: 3px; }
+.skill-card .del-skill { opacity: 0; transition: opacity var(--t-fast); }
+.skill-card:hover .del-skill { opacity: 1; }
+
+.level-dots { display: flex; gap: 6px; margin-bottom: 10px; }
+.level-dots .dot {
+  width: 28px; height: 8px;
+  border-radius: 999px;
+  background: var(--bg-surface-2);
+  transition: background var(--t);
+}
+.level-dots .dot.filled { background: var(--brand-grad); }
+.level-dots .dot.target { background: rgba(59, 130, 246, .25); }
+
+.skill-card .meta { display: flex; justify-content: space-between; font-size: .78rem; color: var(--text-muted); margin-top: 8px; }
+.skill-card .hours { display: flex; align-items: center; gap: 4px; }
+.skill-card .hours svg { width: 12px; height: 12px; }
+
+/* Category badge colours */
+.cat-badge {
+  display: inline-flex; align-items: center;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: .7rem; font-weight: 600;
+}
+.cat-Technical  { background: var(--info-bg);    color: var(--info);    }
+.cat-Soft       { background: var(--purple-bg);  color: var(--purple);  }
+.cat-Domain     { background: var(--success-bg); color: var(--success); }
+.cat-Tools      { background: var(--warning-bg); color: var(--warning); }
+
+/* ---- GOALS ---- */
+.goal-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin-bottom: 14px;
+  transition: transform var(--t), box-shadow var(--t);
+  position: relative;
+}
+.goal-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.goal-card .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.goal-card .top .title { font-weight: 700; font-size: 1rem; }
+.goal-card .meta { display: flex; align-items: center; gap: 14px; font-size: .8rem; color: var(--text-secondary); margin: 8px 0 12px; flex-wrap: wrap; }
+.goal-card .meta .chip { display: inline-flex; align-items: center; gap: 5px; }
+.goal-card .meta svg { width: 13px; height: 13px; }
+.goal-card .bottom { display: flex; align-items: center; gap: 12px; }
+.goal-card .pct { font-weight: 700; color: var(--brand-600); font-size: .88rem; flex-shrink: 0; min-width: 36px; }
+[data-theme="dark"] .goal-card .pct { color: var(--brand-300); }
+.goal-card .del-goal { opacity: 0; transition: opacity var(--t-fast); }
+.goal-card:hover .del-goal { opacity: 1; }
+
+.milestone-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.milestone-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.milestone-dot.done { background: var(--success); }
+.milestone-dot.left { background: var(--bg-surface-2); border: 2px solid var(--border-strong); }
+
+/* ---- INSIGHT PANEL ---- */
+.insight-panel { display: flex; flex-direction: column; gap: 16px; }
+
+.insight-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+.insight-card h4 { font-weight: 700; margin-bottom: 14px; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
+.insight-card h4 svg { width: 16px; height: 16px; }
+
+.radar-wrap { padding: 8px 0; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: .82rem; }
+.bar-row .name { width: 120px; flex-shrink: 0; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-row .track { flex: 1; height: 10px; background: var(--bg-surface-2); border-radius: 999px; overflow: hidden; }
+.bar-row .track .fill { height: 100%; background: var(--brand-grad); border-radius: 999px; transition: width var(--t-slow); }
+.bar-row .pct { width: 32px; text-align: right; font-weight: 600; font-size: .78rem; color: var(--text-muted); }
+
+.gap-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.gap-item:last-child { border-bottom: none; }
+.gap-item .gap-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warning); flex-shrink: 0; margin-top: 5px; }
+.gap-item .body .title { font-weight: 600; font-size: .88rem; }
+.gap-item .body .desc { font-size: .78rem; color: var(--text-secondary); margin-top: 2px; }
+
+.streak-row { display: flex; gap: 4px; }
+.streak-day { width: 28px; height: 28px; border-radius: 6px; background: var(--bg-surface-2); display: flex; align-items: center; justify-content: center; font-size: .65rem; color: var(--text-muted); }
+.streak-day.active { background: var(--brand-grad); color: #fff; }
+.streak-day.today { outline: 2px solid var(--brand-500); }
+
+@media (max-width: 1060px) { .skills-layout { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .insight-panel { padding: 12px; font-size: .82rem; }
+  .insight-panel h4 { font-size: .85rem; }
+  .streak-day { width: 24px; height: 24px; font-size: .6rem; }
+  .dot { min-width: 36px; min-height: 36px; cursor: pointer; }
+  .del-skill { opacity: 1 !important; min-width: 36px; min-height: 36px; }
+}

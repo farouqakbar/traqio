@@ -1,0 +1,438 @@
+/* TRAQIO — Login page styles */
+
+body {
+  min-height: 100vh;
+  background: var(--bg-app);
+}
+
+.login-theme {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 50;
+}
+
+.login-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* LEFT — marketing panel */
+.login-marketing {
+  position: relative;
+  padding: 48px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  overflow: hidden;
+}
+
+/* ── Video background ── */
+.login-marketing .bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.login-marketing .bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(27, 25, 25, 0.75) 0%,
+    rgba(44, 47, 49, 0.7) 50%,
+    rgba(49, 51, 54, 0.65) 100%
+  );
+  z-index: 1;
+}
+
+.login-marketing .quote {
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+.login-marketing .quote h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+.login-marketing .quote p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+.login-marketing .quote .author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.login-marketing .quote .author .avatar {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.login-marketing .quote .author .name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.login-marketing .quote .author .role {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.82rem;
+}
+
+.login-marketing .features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 24px;
+}
+.login-marketing .features-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+.login-marketing .features-list li span[data-icon] {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.login-marketing .features-list li span[data-icon] svg {
+  width: 12px;
+  height: 12px;
+}
+
+.bg-orbs {
+  display: none;
+}
+
+/* RIGHT — login form */
+.login-main {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.back-link {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.back-link:hover {
+  color: var(--text-primary);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+.login-head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.login-head h1 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.login-head p {
+  color: var(--text-secondary);
+}
+
+.google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--t);
+  box-shadow: var(--shadow-sm);
+}
+.google-btn:hover {
+  border-color: var(--brand-500);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.google-btn .g-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+}
+.google-btn[disabled] {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.divider {
+  margin: 28px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.why {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.legal {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.legal a {
+  color: var(--brand-600);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color var(--t);
+}
+.legal a:hover {
+  text-decoration-color: var(--brand-600);
+}
+[data-theme="dark"] .legal a {
+  color: var(--brand-400);
+}
+[data-theme="dark"] .legal a:hover {
+  text-decoration-color: var(--brand-400);
+}
+
+/* ═══════════════════════════════════════
+   LEGAL MODAL STYLES
+════════════════════════════════════════ */
+.legal-modal {
+  max-width: 640px;
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.legal-modal .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.legal-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.legal-modal-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--brand-grad-soft);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--brand-600);
+}
+[data-theme="dark"] .legal-modal-icon {
+  color: var(--brand-400);
+}
+.legal-modal-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.legal-modal-title h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.legal-modal-date {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.modal-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--t-fast);
+  flex-shrink: 0;
+}
+.modal-close-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.modal-close-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Scrollable body */
+.legal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 24px !important;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar inside modal */
+.legal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.legal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.legal-body::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+/* Section blocks */
+.legal-section {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.legal-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.legal-section h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.legal-section p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-section ul {
+  margin: 8px 0 8px 4px;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.legal-section ul li {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.legal-section ul li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.legal-section a {
+  color: var(--brand-600);
+  font-weight: 500;
+}
+[data-theme="dark"] .legal-section a {
+  color: var(--brand-400);
+}
+
+/* Footer */
+.legal-modal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .login-wrap {
+    grid-template-columns: 1fr;
+  }
+  .login-marketing {
+    padding: 32px;
+    min-height: auto;
+    gap: 24px;
+  }
+  .login-marketing .features-list {
+    display: none;
+  }
+  .login-main {
+    padding: 64px 24px 32px;
+  }
+  .back-link {
+    top: 20px;
+    left: 20px;
+  }
+  .login-head {
+    margin-top: 16px;
+  }
+
+  .legal-modal {
+    max-height: 90vh;
+    margin: 0 12px;
+  }
+}

@@ -1,0 +1,9 @@
+User-agent: *
+# Block authenticated app pages from indexing
+Disallow: /pages/
+Disallow: /assets/js/config.js
+
+# Allow landing page and public assets
+Allow: /
+
+Sitemap: https://traqio.github.io/Traqio/sitemap.xml

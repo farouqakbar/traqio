@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self';" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="../assets/logo/logo.png" type="image/png" />
+    <title>Admin — Traqio</title>
+    <script>
+      try { document.documentElement.setAttribute("data-theme", localStorage.getItem("traqio:theme") || "light"); } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/app-shell.css" />
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app" id="app"></div>
+
+    <!--
+      SUPABASE SETUP — run once in Supabase SQL Editor:
+
+      CREATE TABLE public.jobs (
+        id           uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+        company      text NOT NULL,
+        position     text NOT NULL,
+        industry     text DEFAULT '',
+        location     text NOT NULL,
+        salary       text DEFAULT '',
+        salary_min   numeric,
+        salary_max   numeric,
+        type         text DEFAULT 'Full-time',
+        description  text DEFAULT '',
+        requirements text DEFAULT '',
+        tags         text[] DEFAULT '{}',
+        preferences  text[] DEFAULT '{}',
+        apply_url    text DEFAULT '',
+        logo_url     text DEFAULT '',
+        logo_color   text DEFAULT '#3b82f6',
+        active       boolean DEFAULT true,
+        posted_at    timestamptz DEFAULT now(),
+        created_by   uuid REFERENCES auth.users(id),
+        created_at   timestamptz DEFAULT now()
+      );
+
+      ALTER TABLE public.jobs ENABLE ROW LEVEL SECURITY;
+
+      CREATE POLICY "public_read_active" ON public.jobs
+        FOR SELECT USING (active = true);
+
+      CREATE POLICY "admin_all" ON public.jobs
+        FOR ALL USING (auth.email() = 'traqio.web@gmail.com');
+
+      -- Storage: create bucket "job-logos" (public) in Supabase Dashboard > Storage
+      -- Then add RLS policies on storage.objects for public read + admin insert/delete.
+    -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/icons.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/state.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/auth-guard.js"></script>
+    <script src="../assets/js/mock-data.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/app-shell.js"></script>
+    <script src="../assets/js/admin-guard.js"></script>
+    <script src="../assets/js/admin.js"></script>
+  </body>
+</html>

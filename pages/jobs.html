@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self';" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="../assets/logo/logo.png" type="image/png" />
+    <title>Job Search — Traqio</title>
+    <script>
+      try { document.documentElement.setAttribute("data-theme", localStorage.getItem("traqio:theme") || "light"); } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/app-shell.css" />
+    <link rel="stylesheet" href="../assets/css/jobs.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app" id="app"></div>
+
+    <!-- Add Job Modal -->
+    <div class="modal-backdrop" id="addJobModal">
+      <div class="modal" style="max-width:520px">
+        <div class="modal-header">
+          <h3>Add Job Manually</h3>
+          <button class="btn-icon btn-ghost" id="closeAddJob" data-icon="x">✕</button>
+        </div>
+        <div class="modal-body" style="display:flex;flex-direction:column;gap:14px">
+          <div class="field">
+            <label class="label">Company *</label>
+            <input class="input" id="aj-company" placeholder="e.g. Gojek" />
+          </div>
+          <div class="field">
+            <label class="label">Position *</label>
+            <input class="input" id="aj-position" placeholder="e.g. Frontend Engineer" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field">
+              <label class="label">Location</label>
+              <input class="input" id="aj-location" placeholder="Jakarta / Remote" />
+            </div>
+            <div class="field">
+              <label class="label">Salary</label>
+              <input class="input" id="aj-salary" placeholder="e.g. Rp 10–15jt" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Apply URL</label>
+            <input class="input" id="aj-url" placeholder="https://..." type="url" />
+          </div>
+          <div class="field">
+            <label class="label">Tags <span style="font-size:.75rem;color:var(--text-muted)">(comma-separated)</span></label>
+            <input class="input" id="aj-tags" placeholder="React, Node.js, TypeScript" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field">
+              <label class="label">Job Type</label>
+              <select class="input" id="aj-type">
+                <option value="">Select…</option>
+                <option>Full-time</option><option>Part-time</option>
+                <option>Contract</option><option>Internship</option><option>Remote</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="label">Industry</label>
+              <select class="input" id="aj-industry">
+                <option value="">Select…</option>
+                <option>Technology</option><option>Finance &amp; Banking</option>
+                <option>Healthcare &amp; Medical</option><option>Education</option>
+                <option>E-Commerce &amp; Retail</option><option>Startup</option>
+                <option>Manufacturing &amp; Industry</option><option>Consulting</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelAddJob">Cancel</button>
+          <button class="btn btn-primary" id="saveAddJob">Save Job</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/icons.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/state.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/auth-guard.js"></script>
+    <script src="../assets/js/mock-data.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/app-shell.js"></script>
+    <script src="../assets/js/jobs.js"></script>
+  </body>
+</html>

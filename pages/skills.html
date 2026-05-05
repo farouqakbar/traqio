@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self';" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="../assets/logo/logo.png" type="image/png" />
+    <title>Skills &amp; Goals — Traqio</title>
+    <script>
+      try { document.documentElement.setAttribute("data-theme", localStorage.getItem("traqio:theme") || "light"); } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/app-shell.css" />
+    <link rel="stylesheet" href="../assets/css/skills.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app" id="app"></div>
+
+    <!-- Add Skill modal -->
+    <div class="modal-backdrop" id="addSkillModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Add Skill</h3>
+          <button class="btn-icon btn-ghost" id="closeSkillModal" data-icon="x"></button>
+        </div>
+        <div class="modal-body">
+          <div class="field"><label class="label">Skill Name</label><input class="input" id="sk-name" placeholder="e.g. dbt, Tableau, Statistics" /></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field">
+              <label class="label">Category</label>
+              <select class="select" id="sk-cat">
+                <option>Technical</option><option>Soft Skills</option><option>Domain</option><option>Tools</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="label">Current Level (1–5)</label>
+              <input class="input" type="number" id="sk-level" min="1" max="5" value="1" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Target Level (1–5)</label>
+            <input class="input" type="number" id="sk-target" min="1" max="5" value="5" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelSkillModal">Cancel</button>
+          <button class="btn btn-primary" id="saveSkillModal">Add Skill</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Goal modal -->
+    <div class="modal-backdrop" id="addGoalModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Set a New Goal</h3>
+          <button class="btn-icon btn-ghost" id="closeGoalModal" data-icon="x"></button>
+        </div>
+        <div class="modal-body">
+          <div class="field"><label class="label">Goal Title</label><input class="input" id="g-title" placeholder="e.g. Land a Data Analyst role by Q3" /></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field"><label class="label">Deadline</label><input class="input" type="date" id="g-deadline" /></div>
+            <div class="field"><label class="label">Total Milestones</label><input class="input" type="number" id="g-milestones" value="3" min="1" /></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelGoalModal">Cancel</button>
+          <button class="btn btn-primary" id="saveGoalModal">Create Goal</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/icons.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/state.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/auth-guard.js"></script>
+    <script src="../assets/js/mock-data.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/app-shell.js"></script>
+    <script src="../assets/js/skills.js"></script>
+  </body>
+</html>
