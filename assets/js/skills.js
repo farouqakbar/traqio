@@ -119,6 +119,11 @@
     return `
       <div class="insight-panel">
         <div class="insight-card">
+          <h4 style="display:flex;align-items:center;gap:8px">${I("sparkles")} ${T("insight_streak")}</h4>
+          <div class="streak-row">${streak}</div>
+          <div style="font-size:.8rem;color:var(--text-secondary);margin-top:10px">${T("streak_desc")}</div>
+        </div>
+        <div class="insight-card">
           <h4 style="display:flex;align-items:center;gap:8px">${I("chart")} ${T("insight_progress")}</h4>
           <div class="radar-wrap">${bars || `<p style="color:var(--text-muted);font-size:.85rem">${T("no_skills_insight")}</p>`}</div>
         </div>
@@ -138,11 +143,6 @@
               <div style="font-size:.72rem;color:var(--text-muted)">${T("goals_avg")}</div>
             </div>
           </div>
-        </div>
-        <div class="insight-card">
-          <h4 style="display:flex;align-items:center;gap:8px">${I("sparkles")} ${T("insight_streak")}</h4>
-          <div class="streak-row">${streak}</div>
-          <div style="font-size:.8rem;color:var(--text-secondary);margin-top:10px">${T("streak_desc")}</div>
         </div>
       </div>`;
   }

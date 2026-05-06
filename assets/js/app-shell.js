@@ -157,9 +157,12 @@
 
     return `
       <header class="topbar">
-        <a href="dashboard.html" class="topbar-logo">
+        <a href="dashboard.html" class="topbar-logo" title="Home">
           <img src="../assets/logo/logokanan.png" class="topbar-logo-light" alt="Traqio" />
           <img src="../assets/logo/logodarkmode.png" class="topbar-logo-dark" alt="Traqio" />
+        </a>
+        <a href="dashboard.html" class="topbar-home-btn" title="Home" aria-label="Back to Home">
+          ${I("home")}
         </a>
 
         <div class="search">

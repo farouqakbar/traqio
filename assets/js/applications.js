@@ -214,6 +214,9 @@
 
        <div class="toolbar-right">
           <a href="jobs.html" class="btn-find-jobs">🔍 Find Jobs</a>
+          <button class="filter-chip filter-chip--add-stage" id="addStageChip">
+            ＋ Add Stage
+          </button>
           <button class="filter-chip filter-chip--priority ${state.priorityMode ? "active" : ""}" id="priorityChip">
             ⠿ My Priority
           </button>
@@ -1177,7 +1180,7 @@
   function wire() {
     // Status filter chips — deactivate when My Priority is on
     document
-      .querySelectorAll(".filter-chip:not(.filter-chip--priority)")
+      .querySelectorAll(".filter-chip:not(.filter-chip--priority):not(.filter-chip--add-stage)")
       .forEach((b) => {
         b.addEventListener("click", () => {
           state.filter = b.dataset.filter;
@@ -1185,6 +1188,11 @@
           render();
         });
       });
+
+    // Add Stage chip — open quick add-stage modal
+    document.getElementById("addStageChip")?.addEventListener("click", () => {
+      openAddStageModal();
+    });
 
     // My Priority chip — toggle priorityMode
     document.getElementById("priorityChip")?.addEventListener("click", () => {
@@ -1311,6 +1319,47 @@
         document.getElementById("__traqioQuickMenu")?.remove();
       }
     };
+  }
+
+  // ── ADD STAGE MODAL ───────────────────────────────────────────────────────────
+  function openAddStageModal() {
+    const palette = ["#3b82f6","#8b5cf6","#ec4899","#10b981","#f59e0b","#06b6d4","#f97316","#84cc16"];
+    const color = palette[Math.floor(Math.random() * palette.length)];
+    const overlay = document.createElement("div");
+    overlay.id = "addStageOverlay";
+    overlay.className = "modal-overlay open";
+    overlay.innerHTML = `
+      <div class="modal-box" style="max-width:360px">
+        <h3 style="margin-bottom:16px;font-size:1rem;font-weight:700">➕ Add Custom Stage</h3>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div>
+            <label style="font-size:.82rem;font-weight:600;display:block;margin-bottom:4px">Stage Name</label>
+            <input id="newStageName" class="input" placeholder="e.g. HR Interview, Assessment…" style="width:100%"/>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <label style="font-size:.82rem;font-weight:600">Color</label>
+            <input type="color" id="newStageColor" value="${color}" style="width:40px;height:32px;border:none;cursor:pointer;background:none"/>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:20px;justify-content:flex-end">
+          <button class="btn btn-secondary" id="addStageCancelBtn">Cancel</button>
+          <button class="btn btn-primary" id="addStageConfirmBtn">Add Stage</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+    document.getElementById("newStageName")?.focus();
+    document.getElementById("addStageCancelBtn")?.addEventListener("click", () => overlay.remove());
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.remove(); });
+    document.getElementById("addStageConfirmBtn")?.addEventListener("click", () => {
+      const name = document.getElementById("newStageName")?.value?.trim();
+      const col = document.getElementById("newStageColor")?.value || color;
+      if (!name) { document.getElementById("newStageName")?.focus(); return; }
+      state.columns.push({ key: "custom_" + Date.now(), label: name, color: col, emoji: "" });
+      saveColumns(state.columns);
+      overlay.remove();
+      render();
+      window.Traqio?.toast?.(`Stage "${name}" added`, "success");
+    });
   }
 
   // ── MODAL ─────────────────────────────────────────────────────────────────────

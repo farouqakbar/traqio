@@ -230,11 +230,6 @@
         ? `<button class="btn btn-primary btn-sm apply-btn" data-jid="${j.id}" data-url="${encodeURIComponent(j.apply_url)}">Apply →</button>`
         : `<button class="btn btn-secondary btn-sm" disabled title="No apply link available" style="opacity:.4;cursor:not-allowed">Apply →</button>`;
 
-    // "Mark Applied" only on cards not yet applied
-    const markBtn = !isApplied
-      ? `<button class="btn btn-ghost btn-sm mark-applied-btn" data-jid="${j.id}" title="Mark as Applied">✓ Mark Applied</button>`
-      : "";
-
     return `
       <div class="job-card ${isSaved ? "saved" : ""} ${isApplied ? "job-applied" : ""}" data-jid="${j.id}">
         <div class="logo" style="background:${logoBg}">${logoInner}</div>
@@ -269,7 +264,6 @@
           <span class="match-badge ${matchClass(score)}">${score}% match</span>
           <button class="btn btn-icon ${isSaved ? "btn-primary" : "btn-secondary"} save-btn" data-jid="${j.id}" title="${isSaved ? "Unsave" : "Save job"}" style="border-radius:var(--radius)">${I("bookmark")}</button>
           ${applyBtn}
-          ${markBtn}
         </div>
       </div>`;
   }
@@ -870,14 +864,6 @@
       });
     });
 
-    // Mark Applied button: manual, no URL needed
-    document.querySelectorAll(".mark-applied-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        doMarkApplied(btn.dataset.jid);
-        window.Traqio.toast("Marked as Applied", "success");
-      });
-    });
   }
 
   /* ── Init ────────────────────────────────────────────────── */

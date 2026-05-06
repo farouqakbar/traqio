@@ -54,6 +54,19 @@
   display: none;
 }
 
+/* Add Stage chip */
+.filter-chip--add-stage {
+  border-style: dashed;
+  color: var(--brand-500);
+  border-color: var(--brand-400);
+  background: var(--brand-grad-soft, rgba(59,130,246,.06));
+}
+.filter-chip--add-stage:hover {
+  background: rgba(59,130,246,.12);
+  border-color: var(--brand-500);
+  color: var(--brand-600);
+}
+
 /* ═══════════════════════════════════════════════════════
    TOOLBAR
    ═══════════════════════════════════════════════════════ */
@@ -1389,9 +1402,8 @@
     font-size: 0.72rem;
   }
 
-  /* Move Find Jobs to top-left of header (before titles) */
+  /* Applications title left, Find Jobs right */
   .page-header-actions {
-    order: -1;
     flex-shrink: 0;
   }
   .page-header-actions .btn-primary {

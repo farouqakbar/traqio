@@ -35,10 +35,10 @@
         dash_recent: "Recent Activity",
         dash_recent_sub: "Latest updates",
         dash_view_all: "View all",
-        dash_upcoming: "Upcoming Interviews",
+        dash_upcoming: "Upcoming Events",
         dash_upcoming_sub: "Your schedule",
-        dash_no_schedule: "No interviews scheduled",
-        dash_no_sched_desc: "Add applications to track interviews",
+        dash_no_schedule: "No events scheduled",
+        dash_no_sched_desc: "Add applications to track upcoming events",
         dash_add_app_btn: "Add Application",
         dash_active_goals: "Active Goals",
         dash_goals_sub: "Learning progress",
@@ -555,8 +555,11 @@
     "stats",
     "pipeline",
     "conversion",
-    "row2",
-    "row3",
+    "chart",
+    "upcoming",
+    "activities",
+    "goals",
+    "skills",
   ];
 
   function loadDashOrder() {
@@ -678,8 +681,11 @@
       stats: renderStats(apps, skills, upcoming.length),
       pipeline: renderPipeline(apps),
       conversion: renderConversionRate(apps),
-      row2: `<div class="row-2">${renderChart(apps)}${renderUpcoming(upcoming)}</div>`,
-      row3: `<div class="row-3">${renderActivities(activities)}${renderGoals(goals)}${renderSkills(skills)}</div>`,
+      chart: renderChart(apps),
+      upcoming: renderUpcoming(upcoming),
+      activities: renderActivities(activities),
+      goals: renderGoals(goals),
+      skills: renderSkills(skills),
     };
 
     const orderedWidgets = order

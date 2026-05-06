@@ -602,7 +602,6 @@
 @media (max-width: 1060px) {
   .detail-layout { grid-template-columns: 1fr; }
   .side-panel {
-    order: -1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
@@ -611,27 +610,32 @@
 
 @media (max-width: 768px) {
   .app-header {
-    gap: 14px;
-    padding: 18px;
+    gap: 12px;
+    padding: 16px;
   }
-  .app-header .logo { width: 48px; height: 48px; font-size: 1.15rem; border-radius: 12px; }
-  .app-header .info h1 { font-size: 1.2rem; }
-  .section { padding: 18px; border-radius: 16px; }
+  .app-header .logo { width: 46px; height: 46px; font-size: 1.1rem; border-radius: 11px; }
+  .app-header .info h1 { font-size: 1.15rem; }
+  .app-header .info .role { font-size: 0.85rem; }
+  .app-header .meta-row { gap: 6px; margin-top: 8px; }
+  .app-header .chip { font-size: 0.73rem; padding: 3px 8px; }
+  .section { padding: 16px; border-radius: 14px; margin-bottom: 12px; }
+  .info-card { border-radius: 14px; }
+  .side-panel { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
   .app-header {
-    flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px;
-    border-radius: 16px;
+    padding: 14px;
+    border-radius: 14px;
+    gap: 10px;
   }
   .app-header .actions {
     width: 100%;
     justify-content: flex-end;
     padding-top: 10px;
     border-top: 1px solid var(--border);
-    margin-top: 4px;
+    margin-top: 2px;
   }
   .side-panel { grid-template-columns: 1fr; }
 

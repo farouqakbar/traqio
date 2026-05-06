@@ -186,6 +186,22 @@
   text-decoration: none;
   flex-shrink: 0;
 }
+
+/* Mobile-only home icon button (hidden on desktop — sidebar brand serves that role) */
+.topbar-home-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.topbar-home-btn:hover { background: var(--bg-hover); color: var(--brand-500); }
+.topbar-home-btn svg { width: 20px; height: 20px; }
 .topbar-logo img {
   height: 30px;
   width: auto;
@@ -660,8 +676,11 @@
     display: inline-flex;
   }
 
-  /* Show topbar logo and hide sidebar brand */
+  /* Show topbar logo, home btn and hide sidebar brand */
   .topbar-logo {
+    display: flex;
+  }
+  .topbar-home-btn {
     display: flex;
   }
   .sidebar-brand {

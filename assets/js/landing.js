@@ -92,3 +92,69 @@
     if (e.key === "Escape") closeModal();
   });
 })();
+
+// ── Auto-scroll sections (anime.js) ──────────────────────────────────────────
+(function () {
+  if (typeof anime === "undefined") return;
+
+  var SECTIONS = ["#top", "#features", "#templates"];
+  var DWELL       = 5000; // ms to pause on each section
+  var RESUME_DELAY = 6000; // ms idle after manual scroll before resuming auto-scroll
+  var idx = 0;
+  var timer = null;
+  var resumeTimer = null;
+  var paused = false;
+  var scrolling = false;
+
+  function getScrollY(selector) {
+    if (selector === "#top") return 0;
+    var el = document.querySelector(selector);
+    if (!el) return null;
+    return Math.max(0, el.getBoundingClientRect().top + window.scrollY - 64);
+  }
+
+  function animateScroll(targetY) {
+    scrolling = true;
+    anime({
+      targets: [document.documentElement, document.body],
+      scrollTop: targetY,
+      duration: 900,
+      easing: "easeInOutQuad",
+      complete: function () { scrolling = false; }
+    });
+  }
+
+  function advance() {
+    if (paused) return;
+    idx = (idx + 1) % SECTIONS.length;
+    var targetY = getScrollY(SECTIONS[idx]);
+    if (targetY === null) return;
+    animateScroll(targetY);
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(function () {
+      if (!paused) advance();
+    }, DWELL);
+  }
+
+  function handleManualScroll() {
+    if (scrolling) return;
+    paused = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function () { paused = false; }, RESUME_DELAY);
+  }
+
+  // Start after hero is visible
+  setTimeout(function () {
+    startTimer();
+    window.addEventListener("wheel",     handleManualScroll, { passive: true });
+    window.addEventListener("touchmove", handleManualScroll, { passive: true });
+    window.addEventListener("keydown", function (e) {
+      if (["ArrowDown","ArrowUp","PageDown","PageUp","Home","End"," "].includes(e.key)) {
+        handleManualScroll();
+      }
+    });
+  }, 2500);
+})();
