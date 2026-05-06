@@ -209,7 +209,14 @@
             </div>
           </div>
 
-          ${insightPanel(allSkills, allGoals)}
+          <div class="insight-panel-wrap">
+            <button class="insight-panel-toggle" id="insightToggleBtn" aria-expanded="false">
+              ✦ Insights <span class="insight-toggle-arrow">▼</span>
+            </button>
+            <div class="insight-panel-body" id="insightPanelBody" hidden>
+              ${insightPanel(allSkills, allGoals)}
+            </div>
+          </div>
         </div>
       </main>`;
 
@@ -219,6 +226,26 @@
 
   /* ── EVENT WIRING ──────────────────────────────────────────── */
   function wireEvents() {
+    // Insight panel toggle (mobile collapsible, desktop always visible)
+    const insightToggle = document.getElementById("insightToggleBtn");
+    const insightBody   = document.getElementById("insightPanelBody");
+    if (insightToggle && insightBody) {
+      if (window.innerWidth >= 900) {
+        // Desktop: always open, hide the toggle button
+        insightBody.hidden = false;
+        insightBody.removeAttribute("hidden");
+        insightToggle.style.display = "none";
+      } else {
+        insightToggle.addEventListener("click", () => {
+          const isOpen = !insightBody.hidden;
+          insightBody.hidden = isOpen;
+          insightToggle.setAttribute("aria-expanded", String(!isOpen));
+          const arrow = insightToggle.querySelector(".insight-toggle-arrow");
+          if (arrow) arrow.textContent = isOpen ? "▼" : "▲";
+        });
+      }
+    }
+
     // Category filter chips
     document.querySelectorAll(".filter-chip[data-cat]").forEach(btn => {
       btn.addEventListener("click", () => {

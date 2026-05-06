@@ -139,6 +139,31 @@
   min-width: 0;
 }
 
+/* ── Page Back Bar ─────────────────────────────────── */
+.page-back-bar {
+  padding: 10px 24px 0;
+}
+.page-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.page-back-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+@media (max-width: 640px) {
+  .page-back-bar { padding: 8px 16px 0; }
+  .page-back-btn { font-size: 0.78rem; padding: 5px 10px; }
+}
+
 /* ────────────────────────────────────── TOPBAR ────── */
 .topbar {
   height: var(--topbar-h);
@@ -676,12 +701,12 @@
     display: inline-flex;
   }
 
-  /* Show topbar logo, home btn and hide sidebar brand */
+  /* On tablets/phones: show logo (links to home), hide separate home btn */
   .topbar-logo {
     display: flex;
   }
   .topbar-home-btn {
-    display: flex;
+    display: none;
   }
   .sidebar-brand {
     display: none;

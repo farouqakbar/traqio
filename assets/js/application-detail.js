@@ -546,12 +546,41 @@
   let editingStageId = null;
   let pendingNoteTag = "";
 
+  function wireSidePanelCollapse() {
+    if (window.innerWidth > 768) return; // desktop: always expanded
+    const panel = document.getElementById("sidePanel");
+    if (!panel) return;
+    panel.querySelectorAll(".info-card").forEach((card, i) => {
+      const h4 = card.querySelector("h4");
+      if (!h4) return;
+      // Quick Actions card stays open by default; others collapsed on mobile
+      const startOpen = i === 2; // Quick Actions is 3rd card (index 2)
+      if (!startOpen) card.classList.add("info-card--collapsed");
+      h4.style.cursor = "pointer";
+      h4.style.userSelect = "none";
+      const arrow = document.createElement("span");
+      arrow.className = "info-card-arrow";
+      arrow.textContent = startOpen ? "▲" : "▼";
+      arrow.style.cssText = "font-size:.7rem;opacity:.5;margin-left:auto;flex-shrink:0";
+      h4.style.display = "flex";
+      h4.style.alignItems = "center";
+      h4.style.justifyContent = "space-between";
+      h4.appendChild(arrow);
+      h4.addEventListener("click", () => {
+        const collapsed = card.classList.toggle("info-card--collapsed");
+        arrow.textContent = collapsed ? "▼" : "▲";
+      });
+    });
+  }
+
   function wireEvents(appId) {
     // Icon render for [data-icon]
     document.querySelectorAll("[data-icon]").forEach((el) => {
       el.innerHTML =
         window.Traqio?.icons?.render(el.getAttribute("data-icon")) || "";
     });
+
+    wireSidePanelCollapse();
 
     // Quick status change
     window.__traqioQuickStatus = function (newStatus) {

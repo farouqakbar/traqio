@@ -1025,3 +1025,46 @@ section.block {
 @media (max-width: 640px) {
   .video-modal-container { width: 95%; border-radius: 12px; }
 }
+
+/* ── Scroll Progress Dots ─────────────────────────────── */
+#scrollDots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: auto;
+}
+.scroll-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-strong, #cbd5e1);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease, height 0.3s ease;
+  outline: none;
+  display: block;
+}
+.scroll-dot:hover {
+  background: var(--brand-400, #60a5fa);
+  transform: scale(1.3);
+}
+.scroll-dot.active {
+  background: var(--brand-500, #3b82f6);
+  height: 22px;
+  border-radius: 4px;
+  transform: none;
+}
+[data-theme="dark"] .scroll-dot { background: #475569; }
+[data-theme="dark"] .scroll-dot.active { background: var(--brand-400, #60a5fa); }
+
+@media (max-width: 640px) {
+  #scrollDots { right: 10px; gap: 8px; }
+  .scroll-dot { width: 6px; height: 6px; }
+  .scroll-dot.active { height: 18px; }
+}

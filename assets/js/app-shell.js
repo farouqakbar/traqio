@@ -220,10 +220,27 @@
       _clockTimer = null;
     }
 
+    const BACK_LABELS = {
+      applications: { href: "dashboard.html", label: "Dashboard" },
+      skills:       { href: "dashboard.html", label: "Dashboard" },
+      jobs:         { href: "dashboard.html", label: "Dashboard" },
+      profile:      { href: "dashboard.html", label: "Dashboard" },
+      admin:        { href: "dashboard.html", label: "Dashboard" },
+    };
+    const backInfo = active !== "dashboard" ? BACK_LABELS[active] : null;
+    const backBar  = backInfo
+      ? `<div class="page-back-bar">
+           <a href="${backInfo.href}" class="btn btn-ghost btn-sm page-back-btn">
+             ◀ ${backInfo.label}
+           </a>
+         </div>`
+      : "";
+
     root.innerHTML = `
       ${renderSidebar(active)}
       <div class="main">
         ${renderTopbar(topbarOpts)}
+        ${backBar}
         ${mainHtml}
       </div>`;
 

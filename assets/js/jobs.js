@@ -383,13 +383,21 @@
                 jobs.length
                   ? jobs.map((j) => jobCard(j)).join("")
                   : allJobs.length === 0
-                    ? `<div class="empty-state card card-pad">
-                      <div class="icon">${I("search")}</div>
-                      <h3>No jobs yet</h3>
-                      <p>Add jobs manually or adjust your filters.</p>
-                      <button class="btn btn-primary" id="addJobBtnEmpty" style="margin-top:12px">${I("plus")} Add Your First Job</button>
+                    ? `<div class="empty-state card card-pad" style="padding:40px 24px">
+                      <div class="icon" style="font-size:2.5rem;margin-bottom:12px">🎯</div>
+                      <h3 style="font-size:1.1rem;margin-bottom:6px">No jobs added yet</h3>
+                      <p style="max-width:320px;margin:0 auto 20px">Start building your job list. Add positions you're interested in and track them all in one place.</p>
+                      <button class="btn btn-primary" id="addJobBtnEmpty" style="gap:6px">${I("plus")} Add Your First Job</button>
                     </div>`
-                    : `<div class="empty-state card card-pad"><div class="icon">${I("search")}</div><h3>No jobs found</h3><p>Try adjusting your search or filters.</p></div>`
+                    : `<div class="empty-state card card-pad" style="padding:36px 24px">
+                      <div class="icon" style="font-size:2rem;margin-bottom:10px">🔍</div>
+                      <h3 style="margin-bottom:6px">No results found</h3>
+                      <p style="margin-bottom:16px">Try different keywords, or clear your filters to see all jobs.</p>
+                      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+                        <button class="btn btn-secondary btn-sm" id="clearJobSearch">Clear search</button>
+                        <button class="btn btn-secondary btn-sm" id="clearJobFilters">Reset filters</button>
+                      </div>
+                    </div>`
               }
             </div>
 
@@ -553,6 +561,22 @@
       q = e.target.value;
       reloadList();
     });
+
+    // Empty state action buttons
+    document.getElementById("clearJobSearch")?.addEventListener("click", () => {
+      q = "";
+      const inp = document.getElementById("jobQ");
+      if (inp) inp.value = "";
+      reloadList();
+    });
+    document.getElementById("clearJobFilters")?.addEventListener("click", () => {
+      filterIndustry = "all";
+      filterLocation = "all";
+      q = "";
+      const inp = document.getElementById("jobQ");
+      if (inp) inp.value = "";
+      reloadList();
+    });
     document.getElementById("sortBy")?.addEventListener("change", (e) => {
       sortBy = e.target.value;
       reloadList();
@@ -650,11 +674,24 @@
     if (el) {
       el.innerHTML = jobs.length
         ? jobs.map((j) => jobCard(j)).join("")
-        : `<div class="empty-state card card-pad"><div class="icon">${window.Traqio.icons.render("search")}</div><h3>No jobs found</h3><p>Try adjusting your search or filters.</p></div>`;
+        : `<div class="empty-state card card-pad" style="padding:36px 24px">
+            <div class="icon" style="font-size:2rem;margin-bottom:10px">🔍</div>
+            <h3 style="margin-bottom:6px">No results found</h3>
+            <p style="margin-bottom:16px">Try different keywords, or clear your filters to see all jobs.</p>
+            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+              <button class="btn btn-secondary btn-sm" id="clearJobSearch">Clear search</button>
+              <button class="btn btn-secondary btn-sm" id="clearJobFilters">Reset filters</button>
+            </div>
+          </div>`;
       wireSaveAndApply();
-      document
-        .getElementById("addJobBtnEmpty")
-        ?.addEventListener("click", openAddJobModal);
+      document.getElementById("addJobBtnEmpty")?.addEventListener("click", openAddJobModal);
+      document.getElementById("clearJobSearch")?.addEventListener("click", () => {
+        q = ""; const inp = document.getElementById("jobQ"); if (inp) inp.value = ""; reloadList();
+      });
+      document.getElementById("clearJobFilters")?.addEventListener("click", () => {
+        filterIndustry = "all"; filterLocation = "all"; q = "";
+        const inp = document.getElementById("jobQ"); if (inp) inp.value = ""; reloadList();
+      });
     }
   }
 

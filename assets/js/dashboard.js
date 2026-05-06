@@ -692,6 +692,14 @@
       .map((key) => widget(key, widgetsMap[key]))
       .join("");
 
+    const showDragHint = !localStorage.getItem("traqio:dash-hint:v1");
+    const dragHintBanner = showDragHint ? `
+      <div class="dash-drag-hint" id="dashDragHint">
+        <span class="dash-drag-hint-icon">⠿</span>
+        <span>Drag widgets to customise your dashboard layout</span>
+        <button class="dash-drag-hint-close" id="dashDragHintClose" aria-label="Dismiss">✕</button>
+      </div>` : "";
+
     return `
       <main class="page">
         ${renderWelcome(window.Traqio.user, upcoming.length)}
@@ -699,6 +707,7 @@
         ${renderInterviewBanner(apps, upcoming)}
         ${renderOnboarding(apps)}
         ${renderStaleBanner(apps)}
+        ${dragHintBanner}
         <div id="dashWidgets">${orderedWidgets}</div>
       </main>`;
   }
@@ -852,6 +861,20 @@
     }
   }
 
+  function wireDragHint() {
+    const hint = document.getElementById("dashDragHint");
+    if (!hint) return;
+    const dismiss = () => {
+      hint.style.transition = "opacity .25s";
+      hint.style.opacity = "0";
+      setTimeout(() => hint.remove(), 260);
+      localStorage.setItem("traqio:dash-hint:v1", "1");
+    };
+    document.getElementById("dashDragHintClose")?.addEventListener("click", dismiss);
+    // Auto-dismiss after 7 seconds
+    setTimeout(dismiss, 7000);
+  }
+
   function refreshContent() {
     const existing = document.querySelector("#app .page");
     if (!existing) return;
@@ -901,6 +924,7 @@
       searchPlaceholder: T("search_ph"),
     });
     wireDashDragDrop();
+    wireDragHint();
     checkInterviewNotifications(window.Traqio.store.applications.list());
   }
 
@@ -910,8 +934,9 @@
     injectBottomNav();
     const style = document.createElement("style");
     style.textContent = `
+      /* Drag handle: always visible on mobile (compact), hover-reveal on desktop */
       @media (max-width: 640px) {
-        .dash-widget-controls { display: none !important; }
+        .dash-widget-controls { display: flex !important; opacity: 0.4; top: 8px; }
         .dash-widget[draggable="true"] { cursor: grab; }
       }
       @media (min-width: 641px) {
@@ -931,6 +956,35 @@
         text-align: center;
         min-height: 14px;
       }
+      /* Drag hint banner */
+      .dash-drag-hint {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--brand-grad-soft, rgba(99,102,241,.08));
+        border: 1px dashed var(--brand-400, #818cf8);
+        border-radius: var(--radius-lg, 14px);
+        padding: 10px 16px;
+        font-size: .84rem;
+        color: var(--brand-600, #4f46e5);
+        margin-bottom: 12px;
+        animation: fadeUp .35s ease;
+      }
+      [data-theme="dark"] .dash-drag-hint { color: var(--brand-300, #a5b4fc); }
+      .dash-drag-hint-icon { font-size: 1.1rem; flex-shrink: 0; }
+      .dash-drag-hint-close {
+        margin-left: auto;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: inherit;
+        opacity: .6;
+        font-size: .9rem;
+        padding: 2px 6px;
+        border-radius: 6px;
+        flex-shrink: 0;
+      }
+      .dash-drag-hint-close:hover { opacity: 1; background: rgba(0,0,0,.06); }
     `;
     document.head.appendChild(style);
   }, 0);

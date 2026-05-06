@@ -92,6 +92,33 @@
 /* ---- INSIGHT PANEL ---- */
 .insight-panel { display: flex; flex-direction: column; gap: 16px; }
 
+/* Collapsible wrapper (mobile) */
+.insight-panel-wrap { margin-top: 0; }
+.insight-panel-toggle {
+  display: none; /* hidden on desktop */
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 12px 18px;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--brand-600);
+  cursor: pointer;
+  text-align: left;
+  gap: 8px;
+  align-items: center;
+  transition: background var(--t-fast);
+  margin-bottom: 10px;
+}
+[data-theme="dark"] .insight-panel-toggle { color: var(--brand-300); }
+.insight-panel-toggle:hover { background: var(--bg-surface-2); }
+.insight-toggle-arrow { margin-left: auto; font-size: .75rem; opacity: .6; }
+.insight-panel-body[hidden] { display: none; }
+@media (max-width: 900px) {
+  .insight-panel-toggle { display: flex; }
+}
+
 .insight-card {
   background: var(--bg-surface);
   border: 1px solid var(--border);

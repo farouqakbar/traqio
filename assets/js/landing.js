@@ -93,19 +93,74 @@
   });
 })();
 
-// ── Auto-scroll sections (anime.js) ──────────────────────────────────────────
+// ── Auto-scroll sections + progress dots (anime.js) ──────────────────────────
 (function () {
-  if (typeof anime === "undefined") return;
-
-  var SECTIONS = ["#top", "#features", "#templates"];
-  var DWELL       = 5000; // ms to pause on each section
-  var RESUME_DELAY = 6000; // ms idle after manual scroll before resuming auto-scroll
-  var idx = 0;
-  var timer = null;
+  var SECTIONS = [
+    { selector: "#top",       label: "Home"      },
+    { selector: "#features",  label: "Features"  },
+    { selector: "#templates", label: "Showcase"  },
+  ];
+  var DWELL        = 5000;
+  var RESUME_DELAY = 6000;
+  var idx      = 0;
+  var timer    = null;
   var resumeTimer = null;
-  var paused = false;
+  var paused   = false;
   var scrolling = false;
 
+  // ── Build progress dots ──────────────────────────────────────────────────
+  var dotsWrap = document.createElement("div");
+  dotsWrap.id = "scrollDots";
+  dotsWrap.setAttribute("aria-label", "Page sections");
+  dotsWrap.setAttribute("role", "navigation");
+  SECTIONS.forEach(function (sec, i) {
+    var dot = document.createElement("button");
+    dot.className = "scroll-dot" + (i === 0 ? " active" : "");
+    dot.setAttribute("aria-label", sec.label);
+    dot.setAttribute("title", sec.label);
+    dot.dataset.idx = i;
+    dotsWrap.appendChild(dot);
+  });
+  document.body.appendChild(dotsWrap);
+
+  function setActiveDot(i) {
+    dotsWrap.querySelectorAll(".scroll-dot").forEach(function (d, j) {
+      d.classList.toggle("active", j === i);
+    });
+  }
+
+  // Dot click → scroll + pause auto-scroll briefly
+  dotsWrap.addEventListener("click", function (e) {
+    var dot = e.target.closest(".scroll-dot");
+    if (!dot) return;
+    var i = parseInt(dot.dataset.idx);
+    idx = i;
+    setActiveDot(i);
+    var targetY = getScrollY(SECTIONS[i].selector);
+    if (targetY !== null) animateScroll(targetY);
+    paused = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function () { paused = false; }, RESUME_DELAY);
+  });
+
+  // ── Scroll position → active dot sync ───────────────────────────────────
+  function syncDotFromScroll() {
+    if (scrolling) return;
+    var scrollY = window.scrollY;
+    var active  = 0;
+    SECTIONS.forEach(function (sec, i) {
+      if (sec.selector === "#top") return;
+      var el = document.querySelector(sec.selector);
+      if (el && el.getBoundingClientRect().top + window.scrollY - 100 <= scrollY) {
+        active = i;
+      }
+    });
+    idx = active;
+    setActiveDot(active);
+  }
+  window.addEventListener("scroll", syncDotFromScroll, { passive: true });
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
   function getScrollY(selector) {
     if (selector === "#top") return 0;
     var el = document.querySelector(selector);
@@ -114,6 +169,10 @@
   }
 
   function animateScroll(targetY) {
+    if (typeof anime === "undefined") {
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+      return;
+    }
     scrolling = true;
     anime({
       targets: [document.documentElement, document.body],
@@ -127,16 +186,15 @@
   function advance() {
     if (paused) return;
     idx = (idx + 1) % SECTIONS.length;
-    var targetY = getScrollY(SECTIONS[idx]);
+    var targetY = getScrollY(SECTIONS[idx].selector);
     if (targetY === null) return;
+    setActiveDot(idx);
     animateScroll(targetY);
   }
 
   function startTimer() {
     clearInterval(timer);
-    timer = setInterval(function () {
-      if (!paused) advance();
-    }, DWELL);
+    timer = setInterval(function () { if (!paused) advance(); }, DWELL);
   }
 
   function handleManualScroll() {

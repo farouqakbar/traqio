@@ -437,6 +437,11 @@
   gap: 6px;
 }
 
+/* Collapsible sidebar cards on mobile */
+.info-card--collapsed h4 { margin-bottom: 0; }
+.info-card--collapsed > *:not(h4) { display: none; }
+.info-card--collapsed { padding: 14px 18px; }
+
 .info-row {
   display: flex;
   justify-content: space-between;
