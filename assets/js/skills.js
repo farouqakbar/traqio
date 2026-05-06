@@ -230,20 +230,33 @@
     const insightToggle = document.getElementById("insightToggleBtn");
     const insightBody   = document.getElementById("insightPanelBody");
     if (insightToggle && insightBody) {
-      if (window.innerWidth >= 900) {
-        // Desktop: always open, hide the toggle button
-        insightBody.hidden = false;
-        insightBody.removeAttribute("hidden");
-        insightToggle.style.display = "none";
-      } else {
-        insightToggle.addEventListener("click", () => {
+      function applyInsightLayout() {
+        if (window.innerWidth >= 900) {
+          insightBody.hidden = false;
+          insightBody.removeAttribute("hidden");
+          insightToggle.style.display = "none";
+        } else {
+          insightToggle.style.display = "";
+          // If collapsed state was not set yet, keep it closed
           const isOpen = !insightBody.hidden;
-          insightBody.hidden = isOpen;
-          insightToggle.setAttribute("aria-expanded", String(!isOpen));
+          insightToggle.setAttribute("aria-expanded", String(isOpen));
           const arrow = insightToggle.querySelector(".insight-toggle-arrow");
-          if (arrow) arrow.textContent = isOpen ? "▼" : "▲";
-        });
+          if (arrow) arrow.textContent = isOpen ? "▲" : "▼";
+        }
       }
+      insightToggle.addEventListener("click", () => {
+        const isOpen = !insightBody.hidden;
+        insightBody.hidden = isOpen;
+        insightToggle.setAttribute("aria-expanded", String(!isOpen));
+        const arrow = insightToggle.querySelector(".insight-toggle-arrow");
+        if (arrow) arrow.textContent = isOpen ? "▼" : "▲";
+      });
+      applyInsightLayout();
+      let _insightResizeTimer = null;
+      window.addEventListener("resize", () => {
+        clearTimeout(_insightResizeTimer);
+        _insightResizeTimer = setTimeout(applyInsightLayout, 150);
+      });
     }
 
     // Category filter chips

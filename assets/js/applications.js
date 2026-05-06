@@ -1328,6 +1328,9 @@
     const overlay = document.createElement("div");
     overlay.id = "addStageOverlay";
     overlay.className = "modal-overlay open";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-label", "Add Custom Stage");
     overlay.innerHTML = `
       <div class="modal-box" style="max-width:360px">
         <h3 style="margin-bottom:16px;font-size:1rem;font-weight:700">➕ Add Custom Stage</h3>

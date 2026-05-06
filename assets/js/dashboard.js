@@ -65,6 +65,7 @@
         rel_hr_ago: "%s hour ago",
         rel_day_ago: "%s day ago",
         search_ph: "Search...",
+        dash_drag_hint: "Drag widgets to customise your dashboard layout",
       };
       return fallbacks[k] || k;
     }
@@ -692,11 +693,11 @@
       .map((key) => widget(key, widgetsMap[key]))
       .join("");
 
-    const showDragHint = !localStorage.getItem("traqio:dash-hint:v1");
+    const showDragHint = (() => { try { return !localStorage.getItem("traqio:dash-hint:v1"); } catch { return false; } })();
     const dragHintBanner = showDragHint ? `
       <div class="dash-drag-hint" id="dashDragHint">
         <span class="dash-drag-hint-icon">⠿</span>
-        <span>Drag widgets to customise your dashboard layout</span>
+        <span>${T("dash_drag_hint")}</span>
         <button class="dash-drag-hint-close" id="dashDragHintClose" aria-label="Dismiss">✕</button>
       </div>` : "";
 
@@ -868,7 +869,7 @@
       hint.style.transition = "opacity .25s";
       hint.style.opacity = "0";
       setTimeout(() => hint.remove(), 260);
-      localStorage.setItem("traqio:dash-hint:v1", "1");
+      try { localStorage.setItem("traqio:dash-hint:v1", "1"); } catch { /* private browsing */ }
     };
     document.getElementById("dashDragHintClose")?.addEventListener("click", dismiss);
     // Auto-dismiss after 7 seconds

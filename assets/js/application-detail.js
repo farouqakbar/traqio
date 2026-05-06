@@ -555,7 +555,10 @@
       if (!h4) return;
       // Quick Actions card stays open by default; others collapsed on mobile
       const startOpen = i === 2; // Quick Actions is 3rd card (index 2)
-      if (!startOpen) card.classList.add("info-card--collapsed");
+      if (!startOpen) {
+        card.classList.add("info-card--collapsed");
+        card.setAttribute("aria-hidden", "true");
+      }
       h4.style.cursor = "pointer";
       h4.style.userSelect = "none";
       const arrow = document.createElement("span");
@@ -569,6 +572,7 @@
       h4.addEventListener("click", () => {
         const collapsed = card.classList.toggle("info-card--collapsed");
         arrow.textContent = collapsed ? "▼" : "▲";
+        card.setAttribute("aria-hidden", String(collapsed));
       });
     });
   }

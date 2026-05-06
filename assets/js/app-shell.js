@@ -533,13 +533,14 @@
     document.getElementById("notifDropdown")?.classList.remove("open");
   }
 
-  // Global: click on .modal-backdrop closes the modal
+  // Global: click on .modal-backdrop or .modal-overlay closes the modal
   document.addEventListener("click", (e) => {
+    const t = e.target;
     if (
-      e.target.classList.contains("modal-backdrop") &&
-      e.target.classList.contains("open")
+      (t.classList.contains("modal-backdrop") || t.classList.contains("modal-overlay")) &&
+      t.classList.contains("open")
     ) {
-      e.target.classList.remove("open");
+      t.classList.remove("open");
     }
   });
 

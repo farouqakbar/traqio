@@ -867,6 +867,7 @@
 
           const yesBtn = document.getElementById("applyConfirmYes");
           const noBtn = document.getElementById("applyConfirmNo");
+          if (!yesBtn || !noBtn) { modal.style.display = "none"; return; }
 
           // Clone to remove stale listeners
           const yes = yesBtn.cloneNode(true);
